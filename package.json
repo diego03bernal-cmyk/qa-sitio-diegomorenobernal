@@ -1,0 +1,16 @@
+{
+  "name": "qa-sitio-diegomorenobernal",
+  "private": true,
+  "description": "Pruebas E2E con Playwright para diegomorenobernal.com",
+  "scripts": {
+    "test": "playwright test",
+    "test:movil": "playwright test --project=movil",
+    "reporte": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.19.2",
+    "typescript": "^5.9.3"
+  }
+}

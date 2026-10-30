@@ -1,0 +1,31 @@
+name: Pruebas del sitio
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # todos los días, 7:00 a. m. hora de Colombia
+  workflow_dispatch: # botón "Run workflow" para correrlas a mano
+  push:
+    branches: [main]
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CI: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      # El runner trae Google Chrome instalado; la configuración usa channel 'chrome'.
+      - run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reporte-playwright
+          path: playwright-report/
+          retention-days: 14
