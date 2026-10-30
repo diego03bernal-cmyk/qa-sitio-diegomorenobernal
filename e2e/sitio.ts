@@ -33,5 +33,8 @@ export const menu = (page: Page) => page.getByRole('navigation', { name: 'Seccio
 /** En el celular el menú está detrás del botón "☰ Menú"; en el computador ya está a la vista. */
 export async function abrirMenu(page: Page) {
   // El botón solo existe en pantallas de celular (hasta 760 px, ver comun.css); click() espera a que cargue.
-  if ((page.viewportSize()?.width ?? 1280) <= 760) await page.getByRole('button', { name: /Menú/ }).click();
+  if ((page.viewportSize()?.width ?? 1280) > 760) return;
+  // Si ya está abierto, el botón dice "✕ Cerrar": no hay que tocarlo.
+  const boton = page.getByRole('button', { name: /Menú|Cerrar/ });
+  if ((await boton.getAttribute('aria-expanded')) !== 'true') await boton.click();
 }
