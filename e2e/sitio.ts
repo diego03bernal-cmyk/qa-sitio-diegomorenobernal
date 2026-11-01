@@ -7,13 +7,15 @@ export type Pagina = { ruta: string; titulo: string; menu?: string };
 export const PAGINAS_DEL_MENU: Pagina[] = [
   { ruta: '/', titulo: 'Diego Moreno Bernal', menu: 'Inicio' },
   { ruta: '/emermedica/', titulo: 'Salud para tu Equipo', menu: 'Salud para empresas' },
-  { ruta: '/servicios/', titulo: 'Apoyo Administrativo con IA', menu: 'Servicios' },
-  { ruta: '/transporte/', titulo: 'Orden Operativo para Transportadoras', menu: 'Transporte' },
+  { ruta: '/servicios/', titulo: 'DM Consultores', menu: 'Servicios DM' },
   { ruta: '/viajes/', titulo: 'Viaja con Diego', menu: 'Viajes' },
-  { ruta: '/portafolio/', titulo: 'Portafolio Diego Moreno', menu: 'Portafolio' },
 ];
 
-export const TODAS: Pagina[] = [...PAGINAS_DEL_MENU, { ruta: '/privacidad.html', titulo: 'Política de privacidad' }];
+export const TODAS: Pagina[] = [
+  ...PAGINAS_DEL_MENU,
+  { ruta: '/transporte/', titulo: 'Orden Operativo para Transportadoras' },
+  { ruta: '/privacidad.html', titulo: 'Política de privacidad' },
+];
 
 /** Orden exacto del menú. */
 export const MENU = PAGINAS_DEL_MENU.map(p => p.menu!);

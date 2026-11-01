@@ -32,8 +32,8 @@ test.describe('En el celular', () => {
     });
   }
 
-  test('del portafolio se vuelve al inicio con el menú', async ({ page }) => {
-    await page.goto('/portafolio/');
+  test('desde transporte se vuelve al inicio con el menú', async ({ page }) => {
+    await page.goto('/transporte/');
     await page.getByRole('button', { name: /Menú/ }).tap();
     await menu(page).getByRole('link', { name: /^Inicio/ }).tap();
     await expect(page).toHaveURL('/');

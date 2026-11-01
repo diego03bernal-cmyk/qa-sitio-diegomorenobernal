@@ -21,7 +21,7 @@ El sitio tiene reglas de negocio concretas que no se pueden romper al cambiar un
 
 | Archivo | Qué revisa |
 |---|---|
-| `navegacion.spec.ts` | Menú igual en todas las páginas y en el mismo orden, sección actual marcada (`aria-current`), recorrer el sitio solo con el menú, tarjetas del inicio, hoja de vida en la misma pestaña y PDF disponible |
+| `navegacion.spec.ts` | Menú igual en todas las páginas y en el mismo orden, sección actual marcada (`aria-current`), recorrer el sitio solo con el menú, tarjetas del inicio, enlace a la página de transporte y redirección del portafolio antiguo |
 | `contenido.spec.ts` | Reglas de negocio: frases prohibidas, precios con COP, WhatsApp correcto y a la vista, separación de marcas, trato de usted, sin errores de JavaScript, precios de Emermédica, página de transporte completa e indexable |
 | `enlaces.spec.ts` | Ningún enlace interno roto; la vista previa vieja ya no existe |
 | `movil.spec.ts` | En el celular: sin desbordes laterales y el botón "☰ Menú" abre y cierra todas las opciones |

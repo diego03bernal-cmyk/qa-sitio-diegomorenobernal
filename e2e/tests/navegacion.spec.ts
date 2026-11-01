@@ -27,43 +27,37 @@ test.describe('Menú común', () => {
     }
   });
 
-  test('el nombre de arriba lleva al inicio, también desde el portafolio', async ({ page }) => {
-    for (const ruta of ['/transporte/', '/portafolio/', '/privacidad.html']) {
+  test('el nombre de arriba lleva al inicio desde cualquier página', async ({ page }) => {
+    for (const ruta of ['/transporte/', '/servicios/', '/privacidad.html']) {
       await page.goto(ruta);
       await page.getByRole('banner').getByRole('link', { name: 'Diego Moreno Bernal' }).click();
       await expect(page).toHaveURL('/');
     }
   });
 
-  test('las 4 tarjetas del inicio llevan a cada sección', async ({ page }) => {
+  test('las 3 tarjetas del inicio llevan a cada sección', async ({ page }) => {
     const tarjetas: [string, string][] = [
       ['Salud para tu equipo', '/emermedica/'],
       ['Oficina en orden y empresa en regla', '/servicios/'],
-      ['Para empresas de transporte', '/transporte/'],
       ['Vacaciones', '/viajes/'],
     ];
-    await page.goto('/');
-    await expect(page.getByRole('main').getByRole('link')).toHaveCount(tarjetas.length);
     for (const [nombre, ruta] of tarjetas) {
       await page.goto('/');
       await page.getByRole('main').getByRole('link', { name: new RegExp(nombre) }).click();
       await expect(page).toHaveURL(ruta);
     }
   });
+
+  test('desde Servicios DM se llega a la página de transporte', async ({ page }) => {
+    await page.goto('/servicios/');
+    await page.getByRole('link', { name: /Vea cómo le ayudamos/ }).click();
+    await expect(page).toHaveURL('/transporte/');
+  });
 });
 
-test.describe('Portafolio', () => {
-  test('la hoja de vida abre en la misma pestaña y el PDF existe', async ({ page, request }) => {
+test.describe('Sin portafolio ni hoja de vida', () => {
+  test('la dirección vieja del portafolio lleva a Servicios DM', async ({ page }) => {
     await page.goto('/portafolio/');
-    const enlaces = page.locator('a[href="/hoja-de-vida.pdf"]');
-    await expect(enlaces.first()).toBeVisible();
-    // Abrir en pestaña nueva rompe el botón "atrás", sobre todo en el celular.
-    for (const enlace of await enlaces.all()) {
-      await expect(enlace).not.toHaveAttribute('target', '_blank');
-    }
-
-    const pdf = await request.get('/hoja-de-vida.pdf');
-    expect(pdf.status()).toBe(200);
-    expect(pdf.headers()['content-type']).toContain('application/pdf');
+    await expect(page).toHaveURL('/servicios/');
   });
 });
