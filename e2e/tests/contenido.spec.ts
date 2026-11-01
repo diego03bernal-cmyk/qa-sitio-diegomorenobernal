@@ -64,7 +64,7 @@ test.describe('Página de transporte', () => {
   test('muestra la propuesta y el botón de diagnóstico @smoke', async ({ page }) => {
     await page.goto('/transporte/');
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(/grupos de WhatsApp/);
-    await expect(page.getByRole('heading', { level: 3 })).toHaveText(['Un solo WhatsApp', 'Cartera y nómina al día', 'Página web que trabaja']);
+    await expect(page.getByRole('heading', { level: 3 })).toHaveText(['Un solo WhatsApp', 'Cartera y nómina al día', 'Impuestos y SST en regla', 'Página web que trabaja']);
 
     const boton = page.getByRole('link', { name: 'Diagnóstico gratis de 30 minutos' });
     await expect(boton).toBeVisible();

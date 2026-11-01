@@ -38,7 +38,7 @@ test.describe('Menú común', () => {
   test('las 4 tarjetas del inicio llevan a cada sección', async ({ page }) => {
     const tarjetas: [string, string][] = [
       ['Salud para tu equipo', '/emermedica/'],
-      ['Oficina en orden con IA', '/servicios/'],
+      ['Oficina en orden y empresa en regla', '/servicios/'],
       ['Para empresas de transporte', '/transporte/'],
       ['Vacaciones', '/viajes/'],
     ];
